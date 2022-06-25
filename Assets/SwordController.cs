@@ -11,6 +11,7 @@ public class SwordController : MonoBehaviour
 
     [Header("Component References")]
     [SerializeField] GameObject arrow;
+    [SerializeField] Arrow arr;
     [SerializeField] Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,9 @@ public class SwordController : MonoBehaviour
             float angle = Mathf.Atan2(UIManager.Instance.GetJoystick().Vertical, UIManager.Instance.GetJoystick().Horizontal) * Mathf.Rad2Deg;
             arrow.transform.position = new Vector2(transform.position.x, transform.position.y);
             arrow.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            arr.SetArrowPower(Mathf.Abs(UIManager.Instance.GetJoystick().Vertical) + Mathf.Abs(UIManager.Instance.GetJoystick().Horizontal));
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //arr.transform.localPosition = new Vector3();
             //Set direction
 
         }
