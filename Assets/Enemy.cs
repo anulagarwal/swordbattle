@@ -8,10 +8,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] bool isShooting;
     [SerializeField] bool isActive;
+
+    [Header("Component References")]
+    [SerializeField] List<SkinnedMeshRenderer> meshes;
+    SkinnedMeshRenderer[] m;
+    [SerializeField] Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        m = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        for(int i = 0; i< m.Length; i++)
+        {
+            meshes.Add(m[i]);
+        }
     }
 
     // Update is called once per frame
@@ -20,11 +31,19 @@ public class Enemy : MonoBehaviour
         
     }
 
-
+    public void TurnToGray()
+    {
+        for (int i = 0; i < m.Length; i++)
+        {
+            m[i].material.color = Color.gray;
+        }
+    }
     public void DestroySelf()
     {
         GameManager.Instance.RemoveActiveEnemy(this);
-        Destroy(gameObject);
+        anim.Play("death");
+        TurnToGray();
+       // Destroy(gameObject);
         //Instead grey out enemy and ragdoll
     }
 }
