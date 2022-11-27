@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Component Reference")]
     [SerializeField] public GameObject confetti;
+    [SerializeField] public List<MonoBehaviour> objectsToDisable;
+
 
     [Header("Game Attributes")]
     [SerializeField] private int currentScore;
     [SerializeField] private int currentLevel;
     [SerializeField] private int maxLevels;
     [SerializeField] public GameState currentState;
+
 
     [Header("Gameplay Stuff")]
     [SerializeField] private List<Enemy> enemies;
@@ -40,7 +43,15 @@ public class GameManager : MonoBehaviour
         currentLevel = PlayerPrefs.GetInt("level", 1);       
         UIManager.Instance.UpdateLevel(currentLevel);
         currentState = GameState.Main;
-        maxLevels = 1;     
+        maxLevels = 1;
+        foreach (Enemy e in enemies)
+        {
+            e.enabled = false;
+        }
+        foreach (MonoBehaviour m in objectsToDisable)
+        {
+            m.enabled = false;
+        }
     }
 
     #endregion
@@ -51,6 +62,14 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.SwitchUIPanel(UIPanelState.Gameplay);       
         currentState = GameState.InGame;
+        foreach(Enemy e in enemies)
+        {
+            e.enabled = true;
+        }
+        foreach (MonoBehaviour m in objectsToDisable)
+        {
+            m.enabled = true;
+        }
     }
  
 

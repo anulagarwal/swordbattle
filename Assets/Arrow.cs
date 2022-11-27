@@ -24,6 +24,7 @@ public class Arrow : MonoBehaviour
     {
         baseOriginalScale = arrowBody.transform.localScale;
         baseOriginalPos = arrowBody.transform.localPosition;
+        transform.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

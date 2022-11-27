@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Tile
   - Enemy
+  - Bullet
+  - Ground
+  - Wall
+  - CantDraw
   layers:
   - Default
   - TransparentFX
@@ -14,12 +18,12 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - Drawing
+  - OnDraw
+  - Wall
+  - Enemies
+  - Ball
   - 
   - 
   - 

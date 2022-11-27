@@ -14,5 +14,11 @@ public class SwordCollisionHandler : MonoBehaviour
             //Remove from GameManager
             //If all removed, win game
         }
+
+        if(collision.gameObject.tag == "Bullet")
+        {
+            GetComponent<SwordController>().ReduceHealth(1);
+            Destroy(collision.gameObject);
+        }
     }
 }

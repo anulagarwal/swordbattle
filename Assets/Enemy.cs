@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     SkinnedMeshRenderer[] m;
     [SerializeField] Animator anim;
 
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,15 @@ public class Enemy : MonoBehaviour
             meshes.Add(m[i]);
         }
     }
+    private void OnEnable()
+    {
+        GetComponent<Shooter>().enabled = true;
+    }
 
+    private void OnDisable()
+    {
+        GetComponent<Shooter>().enabled = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,11 +49,20 @@ public class Enemy : MonoBehaviour
             m[i].material.color = Color.gray;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        TurnToGray();
+        DestroySelf();
+    }
     public void DestroySelf()
     {
         GameManager.Instance.RemoveActiveEnemy(this);
-        anim.Play("death");
+        //anim.Play("death");
+        Destroy(GetComponent<BoxCollider>());
+        Destroy(anim);
         TurnToGray();
+       // GetComponent<Shooter>().DetachGun();
        // Destroy(gameObject);
         //Instead grey out enemy and ragdoll
     }

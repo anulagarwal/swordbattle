@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 1986662565055334
   appIds:
-  - 0
+  - 1986662565055334
   appLabels:
-  - App Name
+  - Sword Fight 3D
   cookie: 1
   logging: 1
   status: 1
